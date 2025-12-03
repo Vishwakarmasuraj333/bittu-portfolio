@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bittu Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: black;
+      border-bottom: 3px solid yellow;
+      position: relative;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 30px;
+      font-style: italic;
+      font-weight: bold;
+      color: yellow;
+      animation: raa 5s ease-in-out infinite;
+    }
+
+    @keyframes raa {
+      10% {
+        color: red;
+      }
+
+      40% {
+        color: aqua;
+      }
+
+      60% {
+        color: blueviolet;
+      }
+
+      80% {
+        color: darkblue;
+      }
+
+      100% {
+        color: magenta;
+      }
+    }
+
+    nav ul {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: yellow;
+      text-transform: capitalize;
+      font-size: 18px;
+    }
+
+    nav ul li a:hover {
+      color: aqua;
+      cursor: pointer;
+    }
+
+    /* FIXED HUMBURGER */
+    .humburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background-color: yellow;
+      padding: 10px;
+      border-radius: 5px;
+      z-index: 15;
+      margin-left: 130px;
+    }
+
+    .humburger span {
+      width: 35px;
+      background-color: black;
+      height: 5px;
+      border-radius: 5px;
+      transition: 0.3s ease;
+    }
+
+    .humburger.active span:nth-child(1) {
+      transform: rotate(45deg) translateY(10px);
+    }
+
+    .humburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .humburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translateY(-10px);
+    }
+
+
+    @media(max-width:768px) {
+      .humburger {
+        display: flex;
+      }
+
+      nav ul {
+        flex-direction: column;
+        position: fixed;
+        top: 80px;
+        right: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: yellow;
+        font-size: 25px;
+        font-weight: bold;
+        text-transform: capitalize;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        gap: 40px;
+        color: black;
+        transition: right 0.4s ease;
+        z-index: 5;
+      }
+
+      nav.active ul {
+        right: 0;
+      }
+
+      nav ul li a {
+        color: black;
+        font-size: 26px;
+        padding: 20px;
+        text-decoration: none;
+      }
+    }
+
+    .banner {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      margin-top: 0;
+    }
+
+    .banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .banner-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: black;
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
+      background: yellow;
+      padding: 15px 25px;
+      border-radius: 10px;
+      animation: raa 5s ease-in-out infinite;
+    }
+
+    .typewriter-container {
+      font-size: 2rem;
+      border-right: 2px solid #ff0;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      50%,
+      100% {
+        border-color: red;
+        border-right: 5px solid rgb(171, 155, 215);
+        border-radius: 5px;
+      }
+
+      25%,
+      75% {
+        border-color: transparent;
+        border-right: 5px solid green;
+        border-radius: 5px;
+      }
+    }
+
+    .about-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      padding: 50px;
+      background-color: #1a1a1a;
+      gap: 30px;
+      text-align: center;
+    }
+
+
+    .about-container img {
+      width: 250px;
+      height: 250px;
+      border-radius: 15px;
+      object-fit: cover;
+      border: 4px solid yellow;
+    }
+
+    .about-text {
+      max-width: 600px;
+    }
+
+    .about-text h2 {
+      color: yellow;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .about-text p {
+      line-height: 1.6;
+      color: #ccc;
+      font-size: 1.1rem;
+    }
+
+    .about-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .about-buttons a {
+      text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .hire-btn {
+      background-color: yellow;
+      color: black;
+    }
+
+    .hire-btn:hover {
+      background-color: #ffea00;
+    }
+
+    .contact-btn {
+      background-color: transparent;
+      border: 2px solid yellow;
+      color: yellow;
+    }
+
+    .contact-btn:hover {
+      background-color: yellow;
+      color: black;
+    }
+
+    /* Projects Section */
+    .projects-container {
+      padding: 50px;
+      background-color: #222;
+      text-align: center;
+    }
+
+    .projects-container h2 {
+      color: yellow;
+      margin-bottom: 40px;
+    }
+
+    .project-card {
+      display: inline-block;
+      background-color: #1a1a1a;
+      width: 300px;
+      margin: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(255, 255, 0, 0.5);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .project-card .project-info {
+      padding: 20px;
+      color: #ccc;
+    }
+
+    .project-card .project-info h3 {
+      color: yellow;
+      margin-bottom: 10px;
+    }
+
+    .project-card .project-info p {
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    @media(max-width:768px) {
+      .about-container {
+        flex-direction: column;
+      }
+
+      .project-card {
+        width: 80%;
+      }
+    }
+
+    .login-section {
+      padding: 50px;
+      background: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    .login-box {
+      width: 350px;
+      padding: 30px;
+      background: #222;
+      border-radius: 10px;
+      border: 2px solid yellow;
+    }
+
+    .login-box h2 {
+      text-align: center;
+      color: yellow;
+      margin-bottom: 20px;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 5px;
+      outline: none;
+      border: none;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 12px;
+      background: yellow;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .contact-section {
+      padding: 50px;
+      background: #1a1a1a;
+      text-align: center;
+      color: white;
+    }
+
+    .contact-section h2 {
+      color: yellow;
+    }
+
+    .contact-box {
+      max-width: 500px;
+      margin: auto;
+      text-align: left;
+    }
+
+    .contact-box input,
+    .contact-box textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+    }
+
+    .contact-box button {
+      background: yellow;
+      color: black;
+      padding: 12px 25px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    footer {
+      width: 100%;
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 5px solid yellow;
+      margin-top: 40px;
+    }
+
+    .footer-quote {
+      padding: 25px;
+      border-radius: 15px;
+      max-width: 600px;
+      margin: auto;
+      color: white;
+      background-color: rgb(45, 43, 43);
+      border: 4px solid yellow;
+    }
+
+    .footer-quote .heading {
+      color: yellow;
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+    }
+
+    .footer-quote #quote {
+      color: aqua;
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    .footer-hr {
+      width: 80%;
+      margin: 15px auto;
+      border: none;
+      height: 2px;
+      background: yellow;
+    }
+
+
+    .footer-copy {
+      color: #ccc;
+      margin: 20px 0;
+      font-size: 1rem;
+    }
+
+
+    .footer-links {
+      margin-top: 10px;
+    }
+
+    .footer-links a {
+      color: aqua;
+      margin: 0 15px;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: yellow;
+    }
+
+    .social-icons {
+      margin-top: 18px;
+    }
+
+    .social-icons i {
+      font-size: 1.8rem;
+      color: white;
+      margin: 0 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .social-icons i:hover {
+      color: yellow;
+      transform: scale(1.2);
+    }
+
+
+    .slider-box {
+      width: 90%;
+      max-width: 700px;
+      padding: 40px;
+      border-radius: 20px;
+
+      backdrop-filter: blur(10px);
+      text-align: center;
+      font-size: 1.6rem;
+      line-height: 1.3;
+      animation: fade 1s ease;
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .quote-icon {
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: 10px;
+      color: #ffeb3b;
+
+    }
+
+    #topBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 55px;
+      height: 55px;
+      background: yellow;
+      color: black;
+      font-size: 28px;
+      font-weight: bold;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      box-shadow: 0 0 15px rgba(255, 255, 0, 0.8);
+      transition: 0.3s ease;
+      z-index: 999;
+    }
+
+    #topBtn:hover {
+      transform: scale(1.15);
+      box-shadow: 0 0 25px rgba(255, 255, 0, 1);
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">Bittu</div>
+    <div class="humburger" id="humburger"><span></span><span></span><span></span></div>
+
+    <nav id="nav-links">
+      <ul>
+        <li><a href="#about">about</a></li>
+        <li><a href="#home">home</a></li>
+        <li><a href="#project">project</a></li>
+        <li><a href="#login">login</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <p style="color: rgb(218, 26, 173);font-weight: bold;">☕🔥 Bittu – Chai & Coding</p>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="banner" id="home">
+    <img
+      src="https://plus.unsplash.com/premium_photo-1663099789341-26b599454019?q=80&w=1293&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      alt="Banner showing developer working on laptop">
+    <div class="banner-text">
+      <p>
+      <div class="typewriter-container" id="typewriter"></div>
+      </p>
+    </div>
+  </div>
+
+  <section class="about-container" id="about">
+    <img
+      src="https://plus.unsplash.com/premium_photo-1661601863052-04769df64e00?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      alt="Bittu Profile Picture">
+    <div class="about-text">
+      <h2>About Me</h2>
+      <p>I'm <span style="color: aqua;font-size: 25px;">Bittu</span>, a passionate <span
+          style="font-size: 25px; color: #ff0;">Frontend Developer</span> who loves building interactive and dynamic web
+        applications. I
+        specialize in creating responsive designs, clean code, and a seamless user experience. Enthusiastic about
+        learning new technologies and improving my skills every day.</p>
+      <div class="about-buttons">
+        <a href="#hire" class="hire-btn">HireMe</a>
+        <a href="#contact" class="contact-btn">Contact Me</a>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="projects-container" id="project">
+    <h2>My Projects</h2>
+
+    <div class="project-card">
+      <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/d4df10115097391.6047de36983be.jpg"
+        alt="Project 1">
+      <div class="project-info">
+        <h3>Portfolio Website</h3>
+        <p>A responsive personal portfolio showcasing my frontend skills using HTML, CSS, and JavaScript.</p>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/dba27d82207251.5d161e106bfae.png"
+        alt="Project 2">
+      <div class="project-info">
+        <h3>E-commerce Website</h3>
+        <p>Developed a modern e-commerce site with product listings, cart functionality, and checkout flow.</p>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img
+        src="https://marketplace.canva.com/EADaomHkMZA/1/0/533w/canva-yellow-weather-forcast-blog-graphic-MOmJSlaTcig.jpg"
+        alt="Project 3">
+      <div class="project-info">
+        <h3>Weather App</h3>
+        <p>Built a real-time weather application fetching data from a public API with a sleek UI.</p>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="https://tse2.mm.bing.net/th/id/OIP.7PhhMpCzXytL-LnFObRWEgHaGp?w=716&h=642&rs=1&pid=ImgDetMain&o=7&rm=3"
+        alt="Project 4">
+      <div class="project-info">
+        <h3>Todo App</h3>
+        <p>A simple and interactive Todo app built with vanilla JavaScript to practice DOM manipulation.</p>
+      </div>
+    </div>
+
+
+  </section>
+  <section class="login-section" id="login">
+    <div class="login-box">
+      <h2>Login</h2>
+      <input type="text" placeholder="Enter Username">
+      <input type="password" placeholder="Enter Password">
+      <button>Login</button>
+    </div>
+  </section>
+
+
+
+  <section class="contact-section" id="contact">
+    <h2 style="padding: 30px;">Contact Me</h2>
+    <div class="contact-box">
+      <input type="text" placeholder="Your Name">
+      <input type="email" placeholder="Your Email">
+      <textarea rows="5" placeholder="Your Message"></textarea>
+      <button>Send Message</button>
+      <button>Reset</button>
+    </div>
+
+
+    <footer>
+
+      <div class="slider-box footer-quote">
+        <div class="quote-icon">❤️☕🔥</div>
+        <div class="heading">Bittu's Daily Motivation</div>
+        <div id="quote"></div>
+        <hr class="footer-hr">
+      </div>
+
+      <p class="footer-copy">© 2025 Bittu Portfolio | All Rights Reserved</p>
+
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#project">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="social-icons">
+        <i>🌐</i>
+        <i>💼</i>
+        <i>📧</i>
+      </div>
+
+    </footer><button id="topBtn">⬆</button>
+  </section>
+
+  </footer>
+</body>
+
+<script>
+  let hum = document.getElementById("humburger");
+  let menu = document.getElementById("nav-links");
+  hum.addEventListener('click', () => {
+    hum.classList.toggle("active");
+    menu.classList.toggle("active");
+  }); document.querySelectorAll("#nav-links ul li a").forEach(link => { link.addEventListener("click", () => { hum.classList.remove("active"); menu.classList.remove("active"); }); }); const texts = ["I'm Frontend Developer", "Enthusiastic Coder", "Fullstack Developer", "JavaScript Lover"]; let currentText = 0; let index = 0; let isDeleting = false; const speed = 100; function typeWriter() { const container = document.getElementById("typewriter"); const text = texts[currentText]; if (isDeleting) { container.textContent = text.substring(0, index--); } else { container.textContent = text.substring(0, index++); } if (!isDeleting && index === text.length) { isDeleting = true; setTimeout(typeWriter, 1500); } else if (isDeleting && index === 0) { isDeleting = false; currentText = (currentText + 1) % texts.length; setTimeout(typeWriter, 500); } else { setTimeout(typeWriter, speed); } } typeWriter();
+
+  const quotes = [
+    "Code bhi garam 🔥 chai bhi garam ☕ — dono mere hi karam 😎.",
+    "Frontend ho ya Backend 💻, chai ho to end perfect ☕✨.",
+    "Bug se darna kya 🐞… chai ho to sab sahi ☕👌.",
+    "Dil se developer ❤️, aadat se chai lover ☕.",
+    "JavaScript likhta hoon ✍️, par chalti meri chaiScript ☕⚡.",
+    "Chai kam ho to coding slow 🐌… chai zyada ho to ideas flow 💡☕.",
+    "Life me do cheeze zaroori ❤️: Chai ☕ aur Confidence 💪.",
+    "Hardwork 🔨 + Chai ☕ = Bittu ka Formula 💯."
+  ];
+
+  let i = 0;
+
+  function updateQuote() {
+    document.getElementById("quote").innerHTML = quotes[i];
+    i = (i + 1) % quotes.length;
+  }
+
+  updateQuote();
+  setInterval(updateQuote, 3000);
+
+  let topBtn = document.getElementById("topBtn");
+
+  window.onscroll = function () {
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+      topBtn.style.display = "block";
+    } else {
+      topBtn.style.display = "none";
+    }
+  };
+
+  topBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+
+</script>
+
+
+</html>
